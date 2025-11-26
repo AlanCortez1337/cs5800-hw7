@@ -1,0 +1,174 @@
+@startuml
+
+object "characterProperty1 : CharacterProperties" as cp1 {
+    font = "Arial"
+    color = "Black"
+    size = 16
+}
+
+object "characterProperty2 : CharacterProperties" as cp2 {
+    font = "Arial"
+    color = "Black"
+    size = 14
+}
+
+object "characterProperty3 : CharacterProperties" as cp3 {
+    font = "Verdana"
+    color = "Blue"
+    size = 18
+}
+
+object "characterProperty4 : CharacterProperties" as cp4 {
+    font = "Verdana"
+    color = "Red"
+    size = 12
+}
+
+object "characterProperty5 : CharacterProperties" as cp5 {
+    font = "Calibri"
+    color = "Blue"
+    size = 99
+}
+
+object "flyweights : Map<String, CharacterProperties>" as flyweightsMap {
+    "ArialBlack16" -> cp1
+    "ArialBlack14" -> cp2
+    "VerdanaBlue18" -> cp3
+    "VerdanaRed12" -> cp4
+    "CalibriBlue99" -> cp5
+}
+
+flyweightsMap *-- cp1
+flyweightsMap *-- cp2
+flyweightsMap *-- cp3
+flyweightsMap *-- cp4
+flyweightsMap *-- cp5
+
+object "flyweight : CharacterPropertiesFactory" as flyweight {
+    flyweights = flyweightsMap
+}
+
+flyweight *-- flyweightsMap
+
+object "h : Character" as char1 {
+    character = 'H'
+    characterProperty = cp5
+}
+
+object "e : Character" as char2 {
+    character = 'e'
+    characterProperty = cp2
+}
+
+object "l : Character" as char3 {
+    character = 'l'
+    characterProperty = cp2
+}
+
+object "l : Character" as char4 {
+    character = 'l'
+    characterProperty = cp2
+}
+
+object "o : Character" as char5 {
+    character = 'o'
+    characterProperty = cp2
+}
+
+object "w : Character" as char6 {
+    character = 'W'
+    characterProperty = cp5
+}
+
+object "o : Character" as char7 {
+    character = 'o'
+    characterProperty = cp2
+}
+
+object "r : Character" as char8 {
+    character = 'r'
+    characterProperty = cp2
+}
+
+object "l : Character" as char9 {
+    character = 'l'
+    characterProperty = cp2
+}
+
+object "d : Character" as char10 {
+    character = 'd'
+    characterProperty = cp2
+}
+
+object "c : Character" as char11 {
+    character = 'C'
+    characterProperty = cp3
+}
+
+object "s : Character" as char12 {
+    character = 'S'
+    characterProperty = cp3
+}
+
+object "5 : Character" as char13 {
+    character = '5'
+    characterProperty = cp4
+}
+
+object "8 : Character" as char14 {
+    character = '8'
+    characterProperty = cp4
+}
+
+object "0 : Character" as char15 {
+    character = '0'
+    characterProperty = cp4
+}
+
+object "0 : Character" as char16 {
+    character = '0'
+    characterProperty = cp4
+}
+
+char1 o-- cp5
+char2 o-- cp2
+char3 o-- cp2
+char4 o-- cp2
+char5 o-- cp2
+char6 o-- cp5
+char7 o-- cp2
+char8 o-- cp2
+char9 o-- cp2
+char10 o-- cp2
+char11 o-- cp3
+char12 o-- cp3
+char13 o-- cp4
+char14 o-- cp4
+char15 o-- cp4
+char16 o-- cp4
+
+
+object Document {
+    characters = [char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, char14, char15, char16 ]
+    propertiesFactory = flyweight
+}
+
+Document *-- flyweight
+Document *-- char1
+Document *-- char2
+Document *-- char3
+Document *-- char4
+Document *-- char5
+Document *-- char6
+Document *-- char7
+Document *-- char8
+Document *-- char9
+Document *-- char10
+Document *-- char11
+Document *-- char12
+Document *-- char13
+Document *-- char14
+Document *-- char15
+Document *-- char16
+
+@enduml

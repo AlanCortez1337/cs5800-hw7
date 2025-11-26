@@ -48,7 +48,7 @@ class Document {
     + loadFromFile(filename: String): void
 }
 
-Document o-- Character
-Document o-- CharacterPropertiesFactory
+Document *-- Character
+Document *-- CharacterPropertiesFactory
 
 @enduml
