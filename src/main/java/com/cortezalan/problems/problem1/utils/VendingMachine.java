@@ -30,15 +30,13 @@ public class VendingMachine {
         this.state = state;
     }
 
-    public ArrayList<Snack> getSnackOptions() { return this.snacks; }
-
     public void selectSnack(Snack snack) {
         this.dispenserHandler.handleState("select");
         for (int i = 0; i < this.snacks.size(); i++) {
             if (this.snacks.get(i).equals(snack)) {
                 this.selectedSnackIndex = i;
                 this.selectedSnack = this.snacks.get(i);
-                System.out.println("SELECTED SNACK:" + selectedSnack.toString());
+                System.out.println("SELECTED SNACK: " + selectedSnack.toString());
                 this.getState().waitingForMoney(this);
                 return;
             }
@@ -48,6 +46,11 @@ public class VendingMachine {
     }
 
     public double insertMoney(double money) {
+        if (selectedSnack == null) {
+            System.out.println("No Selected Snack");
+            return money;
+        }
+
         this.dispenserHandler.handleState("insert");
         if (money >= this.selectedSnack.getPrice()) {
             this.getState().dispenseItem(this);
