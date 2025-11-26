@@ -3,15 +3,16 @@ package com.cortezalan.problems.problem1.utils.states;
 import com.cortezalan.problems.problem1.utils.VendingMachine;
 
 public class IdleState implements StateOfVendingMachine {
-    public String idle(VendingMachine vendingMachine) {
-        vendingMachine.setState(new IdleState());
-    }
-
-    public String waitingForMoney(VendingMachine vendingMachine) {
+    public void idle(VendingMachine vendingMachine) {
         // nothing
     }
 
-    public String dispenseItem(VendingMachine vendingMachine) {
+    public void waitingForMoney(VendingMachine vendingMachine) {
+        System.out.println("Vending machine in waiting for money state");
+        vendingMachine.setState(new WaitingForMoneyState());
+    }
+
+    public void dispenseItem(VendingMachine vendingMachine) {
         // nothing
     }
 }

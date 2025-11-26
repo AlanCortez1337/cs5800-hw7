@@ -10,7 +10,7 @@ public class SelectSnackHandler extends SnackDispenserHandler{
         if (state.equals("select")) {
             System.out.println("Handling selecting snack from vending machine.");
         } else {
-            System.out.println("I was passed by Select");
+            System.out.println("I was passed by SelectSnackHandler");
             super.handleState(state);
         }
     }

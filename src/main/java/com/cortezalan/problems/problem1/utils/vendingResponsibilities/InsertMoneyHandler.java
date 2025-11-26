@@ -6,10 +6,10 @@ public class InsertMoneyHandler extends SnackDispenserHandler {
     }
 
     public void handleState(String state) {
-        if (state.equals("select")) {
-            System.out.println("Handling selecting snack from vending machine.");
+        if (state.equals("insert")) {
+            System.out.println("Accepting money from vending machine.");
         } else {
-            System.out.println("I was passed by Select");
+            System.out.println("I was passed by InsertMoneyHandler");
             super.handleState(state);
         }
     }
